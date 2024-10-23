@@ -1,10 +1,10 @@
 /**
- * @file indev.h
+ * @file touchpad.h
  * 
  */
 
-#ifndef INDEV_H
-#define INDEV_H
+#ifndef TOUCHPAD_H
+#define TOUCHPAD_H
 
 /*********************
  *      INCLUDES

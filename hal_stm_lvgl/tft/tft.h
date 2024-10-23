@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef DISP_H
-#define DISP_H
+#ifndef TFT_H
+#define TFT_H
 
 /*********************
  *      INCLUDES
