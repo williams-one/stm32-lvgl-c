@@ -115,8 +115,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   tft_init();
   touchpad_init();
-  lv_demo_benchmark();
-//  create_test_scene();
+//  lv_demo_benchmark();
+  create_test_scene();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -127,6 +127,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   	lv_timer_handler();
+  	HAL_Delay(1);
   }
   /* USER CODE END 3 */
 }
@@ -372,8 +373,8 @@ static void MX_LTDC_Init(void)
   pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
   pLayerCfg.Alpha = 255;
   pLayerCfg.Alpha0 = 0;
-  pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_PAxCA;
-  pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_PAxCA;
+  pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
+  pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA;
   pLayerCfg.FBStartAdress = 0;
   pLayerCfg.ImageWidth = 800;
   pLayerCfg.ImageHeight = 480;
