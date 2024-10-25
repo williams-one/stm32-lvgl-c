@@ -24,7 +24,7 @@
 /**********************
  *  STATIC PROTOTYPES
  **********************/
-static void touchpad_read(lv_indev_t *drv, lv_indev_data_t *data);
+static void touchpad_read(lv_indev_t* drv, lv_indev_data_t* data);
 
 /**********************
  *  STATIC VARIABLES
@@ -41,7 +41,7 @@ extern I2C_HandleTypeDef hi2c2;
 
 void touchpad_init(void)
 {
-  lv_indev_t * indev = lv_indev_create();
+  lv_indev_t* indev = lv_indev_create();
   lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
   lv_indev_set_read_cb(indev, touchpad_read);
 }
@@ -50,7 +50,7 @@ void touchpad_init(void)
  *   STATIC FUNCTIONS
  **********************/
 
-static void touchpad_read(lv_indev_t *indev, lv_indev_data_t *data)
+static void touchpad_read(lv_indev_t* indev, lv_indev_data_t* data)
 {
   uint8_t touches = 0;
   uint8_t buf[6];

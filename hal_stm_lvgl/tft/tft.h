@@ -27,6 +27,7 @@
  * GLOBAL PROTOTYPES
  **********************/
 void tft_init(void);
+void create_test_scene(void);
 
 /**********************
  *      MACROS

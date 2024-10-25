@@ -45,9 +45,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-DCACHE_HandleTypeDef hdcache1;
-DCACHE_HandleTypeDef hdcache2;
-
 XSPI_HandleTypeDef hxspi1;
 
 I2C_HandleTypeDef hi2c2;
@@ -69,8 +66,6 @@ static void MX_I2C2_Init(void);
 static void MX_ICACHE_Init(void);
 static void MX_LTDC_Init(void);
 static void MX_RTC_Init(void);
-static void MX_DCACHE1_Init(void);
-static void MX_DCACHE2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -117,12 +112,11 @@ int main(void)
   MX_ICACHE_Init();
   MX_LTDC_Init();
   MX_RTC_Init();
-  MX_DCACHE1_Init();
-  MX_DCACHE2_Init();
   /* USER CODE BEGIN 2 */
   tft_init();
   touchpad_init();
   lv_demo_benchmark();
+//  create_test_scene();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -211,62 +205,6 @@ static void SystemPower_Config(void)
   }
 /* USER CODE BEGIN PWR */
 /* USER CODE END PWR */
-}
-
-/**
-  * @brief DCACHE1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_DCACHE1_Init(void)
-{
-
-  /* USER CODE BEGIN DCACHE1_Init 0 */
-
-  /* USER CODE END DCACHE1_Init 0 */
-
-  /* USER CODE BEGIN DCACHE1_Init 1 */
-
-  /* USER CODE END DCACHE1_Init 1 */
-  hdcache1.Instance = DCACHE1;
-  hdcache1.Init.ReadBurstType = DCACHE_READ_BURST_WRAP;
-  if (HAL_DCACHE_Init(&hdcache1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN DCACHE1_Init 2 */
-
-  /* USER CODE END DCACHE1_Init 2 */
-
-}
-
-/**
-  * @brief DCACHE2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_DCACHE2_Init(void)
-{
-
-  /* USER CODE BEGIN DCACHE2_Init 0 */
-
-  /* USER CODE END DCACHE2_Init 0 */
-
-  /* USER CODE BEGIN DCACHE2_Init 1 */
-
-  /* USER CODE END DCACHE2_Init 1 */
-  hdcache2.Instance = DCACHE2;
-  hdcache2.Init.ReadBurstType = DCACHE_READ_BURST_WRAP;
-  if (HAL_DCACHE_Init(&hdcache2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-   __HAL_RCC_SYSCFG_CLK_ENABLE();
-   HAL_SYSCFG_DisableSRAMCached();
-  /* USER CODE BEGIN DCACHE2_Init 2 */
-
-  /* USER CODE END DCACHE2_Init 2 */
-
 }
 
 /**
