@@ -115,8 +115,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   tft_init();
   touchpad_init();
-//  lv_demo_benchmark();
-  create_test_scene();
+  lv_demo_benchmark();
+  // create_test_scene();
   /* USER CODE END 2 */
 
   /* Infinite loop */
