@@ -207,7 +207,7 @@
 #endif
 
 /*Use TSi's aka (Think Silicon) NemaGFX */
-#define LV_USE_NEMA_GFX 0
+#define LV_USE_NEMA_GFX 1
 
 #if LV_USE_NEMA_GFX
     #define LV_NEMA_GFX_HAL_INCLUDE <stm32u5xx_hal.h>
