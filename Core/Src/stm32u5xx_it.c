@@ -56,6 +56,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
+extern GPU2D_HandleTypeDef hgpu2d;
 extern I2C_HandleTypeDef hi2c2;
 extern LTDC_HandleTypeDef hltdc;
 /* USER CODE BEGIN EV */
@@ -269,6 +270,34 @@ void I2C2_ER_IRQHandler(void)
   /* USER CODE BEGIN I2C2_ER_IRQn 1 */
 
   /* USER CODE END I2C2_ER_IRQn 1 */
+}
+
+/**
+  * @brief This function handles GPU2D global interrupt.
+  */
+void GPU2D_IRQHandler(void)
+{
+  /* USER CODE BEGIN GPU2D_IRQn 0 */
+
+  /* USER CODE END GPU2D_IRQn 0 */
+  HAL_GPU2D_IRQHandler(&hgpu2d);
+  /* USER CODE BEGIN GPU2D_IRQn 1 */
+
+  /* USER CODE END GPU2D_IRQn 1 */
+}
+
+/**
+  * @brief This function handles GPU2D Error interrupt.
+  */
+void GPU2D_ER_IRQHandler(void)
+{
+  /* USER CODE BEGIN GPU2D_ER_IRQn 0 */
+
+  /* USER CODE END GPU2D_ER_IRQn 0 */
+  HAL_GPU2D_ER_IRQHandler(&hgpu2d);
+  /* USER CODE BEGIN GPU2D_ER_IRQn 1 */
+
+  /* USER CODE END GPU2D_ER_IRQn 1 */
 }
 
 /**

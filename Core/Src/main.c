@@ -44,6 +44,14 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+CORDIC_HandleTypeDef hcordic;
+
+DCACHE_HandleTypeDef hdcache1;
+DCACHE_HandleTypeDef hdcache2;
+
+DMA2D_HandleTypeDef hdma2d;
+
+GPU2D_HandleTypeDef hgpu2d;
 
 XSPI_HandleTypeDef hxspi1;
 
@@ -66,6 +74,11 @@ static void MX_I2C2_Init(void);
 static void MX_ICACHE_Init(void);
 static void MX_LTDC_Init(void);
 static void MX_RTC_Init(void);
+static void MX_DCACHE1_Init(void);
+static void MX_DCACHE2_Init(void);
+static void MX_DMA2D_Init(void);
+static void MX_GPU2D_Init(void);
+static void MX_CORDIC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -112,6 +125,11 @@ int main(void)
   MX_ICACHE_Init();
   MX_LTDC_Init();
   MX_RTC_Init();
+  MX_DCACHE1_Init();
+  MX_DCACHE2_Init();
+  MX_DMA2D_Init();
+  MX_GPU2D_Init();
+  MX_CORDIC_Init();
   /* USER CODE BEGIN 2 */
   tft_init();
   touchpad_init();
@@ -206,6 +224,155 @@ static void SystemPower_Config(void)
   }
 /* USER CODE BEGIN PWR */
 /* USER CODE END PWR */
+}
+
+/**
+  * @brief CORDIC Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_CORDIC_Init(void)
+{
+
+  /* USER CODE BEGIN CORDIC_Init 0 */
+
+  /* USER CODE END CORDIC_Init 0 */
+
+  /* USER CODE BEGIN CORDIC_Init 1 */
+
+  /* USER CODE END CORDIC_Init 1 */
+  hcordic.Instance = CORDIC;
+  if (HAL_CORDIC_Init(&hcordic) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN CORDIC_Init 2 */
+
+  /* USER CODE END CORDIC_Init 2 */
+
+}
+
+/**
+  * @brief DCACHE1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_DCACHE1_Init(void)
+{
+
+  /* USER CODE BEGIN DCACHE1_Init 0 */
+
+  /* USER CODE END DCACHE1_Init 0 */
+
+  /* USER CODE BEGIN DCACHE1_Init 1 */
+
+  /* USER CODE END DCACHE1_Init 1 */
+  hdcache1.Instance = DCACHE1;
+  hdcache1.Init.ReadBurstType = DCACHE_READ_BURST_WRAP;
+  if (HAL_DCACHE_Init(&hdcache1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN DCACHE1_Init 2 */
+
+  /* USER CODE END DCACHE1_Init 2 */
+
+}
+
+/**
+  * @brief DCACHE2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_DCACHE2_Init(void)
+{
+
+  /* USER CODE BEGIN DCACHE2_Init 0 */
+
+  /* USER CODE END DCACHE2_Init 0 */
+
+  /* USER CODE BEGIN DCACHE2_Init 1 */
+
+  /* USER CODE END DCACHE2_Init 1 */
+  hdcache2.Instance = DCACHE2;
+  hdcache2.Init.ReadBurstType = DCACHE_READ_BURST_WRAP;
+  if (HAL_DCACHE_Init(&hdcache2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+   __HAL_RCC_SYSCFG_CLK_ENABLE();
+   HAL_SYSCFG_DisableSRAMCached();
+  /* USER CODE BEGIN DCACHE2_Init 2 */
+
+  /* USER CODE END DCACHE2_Init 2 */
+
+}
+
+/**
+  * @brief DMA2D Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_DMA2D_Init(void)
+{
+
+  /* USER CODE BEGIN DMA2D_Init 0 */
+
+  /* USER CODE END DMA2D_Init 0 */
+
+  /* USER CODE BEGIN DMA2D_Init 1 */
+
+  /* USER CODE END DMA2D_Init 1 */
+  hdma2d.Instance = DMA2D;
+  hdma2d.Init.Mode = DMA2D_M2M;
+  hdma2d.Init.ColorMode = DMA2D_OUTPUT_RGB565;
+  hdma2d.Init.OutputOffset = 0;
+  hdma2d.Init.BytesSwap = DMA2D_BYTES_REGULAR;
+  hdma2d.Init.LineOffsetMode = DMA2D_LOM_PIXELS;
+  hdma2d.LayerCfg[1].InputOffset = 0;
+  hdma2d.LayerCfg[1].InputColorMode = DMA2D_INPUT_RGB565;
+  hdma2d.LayerCfg[1].AlphaMode = DMA2D_NO_MODIF_ALPHA;
+  hdma2d.LayerCfg[1].InputAlpha = 0;
+  hdma2d.LayerCfg[1].AlphaInverted = DMA2D_REGULAR_ALPHA;
+  hdma2d.LayerCfg[1].RedBlueSwap = DMA2D_RB_REGULAR;
+  if (HAL_DMA2D_Init(&hdma2d) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_DMA2D_ConfigLayer(&hdma2d, 1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN DMA2D_Init 2 */
+
+  /* USER CODE END DMA2D_Init 2 */
+
+}
+
+/**
+  * @brief GPU2D Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPU2D_Init(void)
+{
+
+  /* USER CODE BEGIN GPU2D_Init 0 */
+
+  /* USER CODE END GPU2D_Init 0 */
+
+  /* USER CODE BEGIN GPU2D_Init 1 */
+
+  /* USER CODE END GPU2D_Init 1 */
+  hgpu2d.Instance = GPU2D;
+  if (HAL_GPU2D_Init(&hgpu2d) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN GPU2D_Init 2 */
+
+  /* USER CODE END GPU2D_Init 2 */
+
 }
 
 /**
