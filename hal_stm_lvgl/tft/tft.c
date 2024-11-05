@@ -39,7 +39,7 @@ static uint8_t fb[2][TFT_HOR_RES * TFT_VER_RES * (LV_COLOR_DEPTH >> 3)] __attrib
  *      MACROS
  **********************/
 
-#ifndef LV_USE_ST_LTDC
+#if LV_USE_ST_LTDC == 0
 /**********************
  *  STATIC PROTOTYPES
  **********************/

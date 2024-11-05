@@ -44,7 +44,6 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-CORDIC_HandleTypeDef hcordic;
 
 DCACHE_HandleTypeDef hdcache1;
 DCACHE_HandleTypeDef hdcache2;
@@ -53,13 +52,9 @@ DMA2D_HandleTypeDef hdma2d;
 
 GPU2D_HandleTypeDef hgpu2d;
 
-XSPI_HandleTypeDef hxspi1;
-
 I2C_HandleTypeDef hi2c2;
 
 LTDC_HandleTypeDef hltdc;
-
-RTC_HandleTypeDef hrtc;
 
 /* USER CODE BEGIN PV */
 
@@ -67,18 +62,14 @@ RTC_HandleTypeDef hrtc;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void SystemPower_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_HSPI1_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_ICACHE_Init(void);
 static void MX_LTDC_Init(void);
-static void MX_RTC_Init(void);
 static void MX_DCACHE1_Init(void);
 static void MX_DCACHE2_Init(void);
 static void MX_DMA2D_Init(void);
 static void MX_GPU2D_Init(void);
-static void MX_CORDIC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -111,25 +102,19 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* Configure the System Power */
-  SystemPower_Config();
-
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_HSPI1_Init();
   MX_I2C2_Init();
   MX_ICACHE_Init();
   MX_LTDC_Init();
-  MX_RTC_Init();
   MX_DCACHE1_Init();
   MX_DCACHE2_Init();
   MX_DMA2D_Init();
   MX_GPU2D_Init();
-  MX_CORDIC_Init();
   /* USER CODE BEGIN 2 */
   tft_init();
   touchpad_init();
@@ -166,16 +151,10 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 
-  /** Configure LSE Drive Capability
-  */
-  HAL_PWR_EnableBkUpAccess();
-  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
-
   /** Initializes the CPU, AHB and APB buses clocks
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_LSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLMBOOST = RCC_PLLMBOOST_DIV1;
@@ -206,50 +185,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief Power Configuration
-  * @retval None
-  */
-static void SystemPower_Config(void)
-{
-
-  /*
-   * Switch to SMPS regulator instead of LDO
-   */
-  if (HAL_PWREx_ConfigSupply(PWR_SMPS_SUPPLY) != HAL_OK)
-  {
-    Error_Handler();
-  }
-/* USER CODE BEGIN PWR */
-/* USER CODE END PWR */
-}
-
-/**
-  * @brief CORDIC Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_CORDIC_Init(void)
-{
-
-  /* USER CODE BEGIN CORDIC_Init 0 */
-
-  /* USER CODE END CORDIC_Init 0 */
-
-  /* USER CODE BEGIN CORDIC_Init 1 */
-
-  /* USER CODE END CORDIC_Init 1 */
-  hcordic.Instance = CORDIC;
-  if (HAL_CORDIC_Init(&hcordic) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN CORDIC_Init 2 */
-
-  /* USER CODE END CORDIC_Init 2 */
-
 }
 
 /**
@@ -372,47 +307,6 @@ static void MX_GPU2D_Init(void)
   /* USER CODE BEGIN GPU2D_Init 2 */
 
   /* USER CODE END GPU2D_Init 2 */
-
-}
-
-/**
-  * @brief HSPI1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_HSPI1_Init(void)
-{
-
-  /* USER CODE BEGIN HSPI1_Init 0 */
-
-  /* USER CODE END HSPI1_Init 0 */
-
-  /* USER CODE BEGIN HSPI1_Init 1 */
-
-  /* USER CODE END HSPI1_Init 1 */
-  /* HSPI1 parameter configuration*/
-  hxspi1.Instance = HSPI1;
-  hxspi1.Init.FifoThresholdByte = 4;
-  hxspi1.Init.MemoryMode = HAL_XSPI_SINGLE_MEM;
-  hxspi1.Init.MemoryType = HAL_XSPI_MEMTYPE_MACRONIX;
-  hxspi1.Init.MemorySize = HAL_XSPI_SIZE_1GB;
-  hxspi1.Init.ChipSelectHighTimeCycle = 2;
-  hxspi1.Init.FreeRunningClock = HAL_XSPI_FREERUNCLK_DISABLE;
-  hxspi1.Init.ClockMode = HAL_XSPI_CLOCK_MODE_0;
-  hxspi1.Init.WrapSize = HAL_XSPI_WRAP_NOT_SUPPORTED;
-  hxspi1.Init.ClockPrescaler = 0;
-  hxspi1.Init.SampleShifting = HAL_XSPI_SAMPLE_SHIFT_NONE;
-  hxspi1.Init.DelayHoldQuarterCycle = HAL_XSPI_DHQC_DISABLE;
-  hxspi1.Init.ChipSelectBoundary = HAL_XSPI_BONDARYOF_NONE;
-  hxspi1.Init.MaxTran = 0;
-  hxspi1.Init.Refresh = 0;
-  if (HAL_XSPI_Init(&hxspi1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN HSPI1_Init 2 */
-
-  /* USER CODE END HSPI1_Init 2 */
 
 }
 
@@ -559,54 +453,6 @@ static void MX_LTDC_Init(void)
 }
 
 /**
-  * @brief RTC Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_RTC_Init(void)
-{
-
-  /* USER CODE BEGIN RTC_Init 0 */
-
-  /* USER CODE END RTC_Init 0 */
-
-  RTC_PrivilegeStateTypeDef privilegeState = {0};
-
-  /* USER CODE BEGIN RTC_Init 1 */
-
-  /* USER CODE END RTC_Init 1 */
-
-  /** Initialize RTC Only
-  */
-  hrtc.Instance = RTC;
-  hrtc.Init.HourFormat = RTC_HOURFORMAT_24;
-  hrtc.Init.AsynchPrediv = 127;
-  hrtc.Init.SynchPrediv = 255;
-  hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
-  hrtc.Init.OutPutRemap = RTC_OUTPUT_REMAP_NONE;
-  hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
-  hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
-  hrtc.Init.OutPutPullUp = RTC_OUTPUT_PULLUP_NONE;
-  hrtc.Init.BinMode = RTC_BINARY_NONE;
-  if (HAL_RTC_Init(&hrtc) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  privilegeState.rtcPrivilegeFull = RTC_PRIVILEGE_FULL_NO;
-  privilegeState.backupRegisterPrivZone = RTC_PRIVILEGE_BKUP_ZONE_NONE;
-  privilegeState.backupRegisterStartZone2 = RTC_BKP_DR0;
-  privilegeState.backupRegisterStartZone3 = RTC_BKP_DR0;
-  if (HAL_RTCEx_PrivilegeModeSet(&hrtc, &privilegeState) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN RTC_Init 2 */
-
-  /* USER CODE END RTC_Init 2 */
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -622,10 +468,8 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
-  __HAL_RCC_GPIOI_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LCD_ON_GPIO_Port, LCD_ON_Pin, GPIO_PIN_SET);
@@ -654,33 +498,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
   HAL_GPIO_Init(BL_CTRL_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : USB_DETECT_Pin */
-  GPIO_InitStruct.Pin = USB_DETECT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(USB_DETECT_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : USB_FAULT_Pin */
-  GPIO_InitStruct.Pin = USB_FAULT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(USB_FAULT_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PA9 PA10 */
-  GPIO_InitStruct.Pin = GPIO_PIN_9|GPIO_PIN_10;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PA11 PA12 */
-  GPIO_InitStruct.Pin = GPIO_PIN_11|GPIO_PIN_12;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
   /*Configure GPIO pins : RED_LED_Pin GREEN_LED_Pin */
   GPIO_InitStruct.Pin = RED_LED_Pin|GREEN_LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -689,12 +506,6 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI1_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(EXTI1_IRQn);
-
-  HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
-
   HAL_NVIC_SetPriority(EXTI5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI5_IRQn);
 

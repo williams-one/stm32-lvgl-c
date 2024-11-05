@@ -64,14 +64,6 @@ void Error_Handler(void);
 #define TP_IRQ_EXTI_IRQn EXTI5_IRQn
 #define BL_CTRL_Pin GPIO_PIN_6
 #define BL_CTRL_GPIO_Port GPIOE
-#define USER_BUTTON_Pin GPIO_PIN_13
-#define USER_BUTTON_GPIO_Port GPIOC
-#define USB_DETECT_Pin GPIO_PIN_1
-#define USB_DETECT_GPIO_Port GPIOA
-#define USB_DETECT_EXTI_IRQn EXTI1_IRQn
-#define USB_FAULT_Pin GPIO_PIN_4
-#define USB_FAULT_GPIO_Port GPIOA
-#define USB_FAULT_EXTI_IRQn EXTI4_IRQn
 #define RED_LED_Pin GPIO_PIN_2
 #define RED_LED_GPIO_Port GPIOD
 #define GREEN_LED_Pin GPIO_PIN_4
