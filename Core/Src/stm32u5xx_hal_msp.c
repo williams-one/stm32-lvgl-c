@@ -207,8 +207,6 @@ void HAL_GPU2D_MspInit(GPU2D_HandleTypeDef* hgpu2d)
     /* GPU2D interrupt Init */
     HAL_NVIC_SetPriority(GPU2D_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(GPU2D_IRQn);
-    HAL_NVIC_SetPriority(GPU2D_ER_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(GPU2D_ER_IRQn);
   /* USER CODE BEGIN GPU2D_MspInit 1 */
 
   /* USER CODE END GPU2D_MspInit 1 */
@@ -236,7 +234,6 @@ void HAL_GPU2D_MspDeInit(GPU2D_HandleTypeDef* hgpu2d)
 
     /* GPU2D interrupt DeInit */
     HAL_NVIC_DisableIRQ(GPU2D_IRQn);
-    HAL_NVIC_DisableIRQ(GPU2D_ER_IRQn);
   /* USER CODE BEGIN GPU2D_MspDeInit 1 */
 
   /* USER CODE END GPU2D_MspDeInit 1 */

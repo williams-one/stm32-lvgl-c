@@ -59,7 +59,6 @@ void EXTI5_IRQHandler(void);
 void I2C2_EV_IRQHandler(void);
 void I2C2_ER_IRQHandler(void);
 void GPU2D_IRQHandler(void);
-void GPU2D_ER_IRQHandler(void);
 void LTDC_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 

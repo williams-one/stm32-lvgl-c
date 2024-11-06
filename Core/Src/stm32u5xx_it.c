@@ -259,20 +259,6 @@ void GPU2D_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles GPU2D Error interrupt.
-  */
-void GPU2D_ER_IRQHandler(void)
-{
-  /* USER CODE BEGIN GPU2D_ER_IRQn 0 */
-
-  /* USER CODE END GPU2D_ER_IRQn 0 */
-  HAL_GPU2D_ER_IRQHandler(&hgpu2d);
-  /* USER CODE BEGIN GPU2D_ER_IRQn 1 */
-
-  /* USER CODE END GPU2D_ER_IRQn 1 */
-}
-
-/**
   * @brief This function handles LCD-TFT global interrupt.
   */
 void LTDC_IRQHandler(void)
