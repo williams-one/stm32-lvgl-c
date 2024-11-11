@@ -28,6 +28,7 @@
  **********************/
 void tft_init(void);
 void create_test_scene(void);
+void load_test_image(void);
 
 /**********************
  *      MACROS

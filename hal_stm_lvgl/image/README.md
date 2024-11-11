@@ -1,0 +1,2 @@
+python3 lvgl/scripts/LVGLImage.py hal_stm_lvgl/image/background.png -o hal_stm_lvgl/image --ofmt C --cf I8
+python3 lvgl/scripts/LVGLImage.py hal_stm_lvgl/image/background.png -o hal_stm_lvgl/image --ofmt C --cf RGB565

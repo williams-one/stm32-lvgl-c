@@ -122,3 +122,11 @@ void create_test_scene(void)
   lv_obj_t* line4 = lv_line_create(lv_screen_active());
   lv_line_set_points(line4, line_points_4, 3);
 }
+
+void load_test_image(void)
+{
+  LV_IMAGE_DECLARE(background);
+  lv_obj_t * img1 = lv_image_create(lv_screen_active());
+  lv_image_set_src(img1, &background);
+  lv_obj_align(img1, LV_ALIGN_CENTER, 0, 0);
+}

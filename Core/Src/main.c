@@ -120,6 +120,7 @@ int main(void)
   touchpad_init();
   lv_demo_benchmark();
   // create_test_scene();
+  // load_test_image();
   /* USER CODE END 2 */
 
   /* Infinite loop */
