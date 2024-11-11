@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file lv_conf.h
  * Configuration file for v9.3.0-dev
  */
@@ -210,11 +210,16 @@
 #define LV_USE_NEMA_GFX 1
 
 #if LV_USE_NEMA_GFX
-    #define LV_NEMA_GFX_HAL_INCLUDE <stm32u5xx_hal.h>
+    /** Select which NemaGFX HAL to use. Possible options:
+     * - LV_NEMA_HAL_CUSTOM
+     * - LV_NEMA_HAL_STM32 */
+    #define LV_USE_NEMA_HAL LV_NEMA_HAL_STM32
+    #if LV_USE_NEMA_HAL == LV_NEMA_HAL_STM32
+        #define LV_NEMA_STM32_HAL_INCLUDE <stm32u5xx_hal.h>
+    #endif
 
     /*Enable Vector Graphics Operations. Available only if NemaVG library is present*/
     #define LV_USE_NEMA_VG 0
-
     #if LV_USE_NEMA_VG
         /*Define application's resolution used for VG related buffer allocation */
         #define LV_NEMA_GFX_MAX_RESX 800
@@ -907,7 +912,8 @@
 /** Use external LZ4 library */
 #define LV_USE_LZ4_EXTERNAL  0
 
-/*SVG library*/
+/*SVG library
+ *  - Requires `LV_USE_VECTOR_GRAPHIC = 1` */
 #define LV_USE_SVG 0
 #define LV_USE_SVG_ANIMATION 0
 #define LV_USE_SVG_DEBUG 0
