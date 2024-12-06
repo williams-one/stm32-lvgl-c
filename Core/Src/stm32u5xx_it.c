@@ -57,6 +57,7 @@
 
 /* External variables --------------------------------------------------------*/
 extern GPU2D_HandleTypeDef hgpu2d;
+extern XSPI_HandleTypeDef hxspi1;
 extern I2C_HandleTypeDef hi2c2;
 extern LTDC_HandleTypeDef hltdc;
 /* USER CODE BEGIN EV */
@@ -242,6 +243,20 @@ void I2C2_ER_IRQHandler(void)
   /* USER CODE BEGIN I2C2_ER_IRQn 1 */
 
   /* USER CODE END I2C2_ER_IRQn 1 */
+}
+
+/**
+  * @brief This function handles HSPI1 global interrupt.
+  */
+void HSPI1_IRQHandler(void)
+{
+  /* USER CODE BEGIN HSPI1_IRQn 0 */
+
+  /* USER CODE END HSPI1_IRQn 0 */
+  HAL_XSPI_IRQHandler(&hxspi1);
+  /* USER CODE BEGIN HSPI1_IRQn 1 */
+
+  /* USER CODE END HSPI1_IRQn 1 */
 }
 
 /**

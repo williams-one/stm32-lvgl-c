@@ -25,6 +25,8 @@
 #include "lvgl/demos/lv_demos.h"
 #include "hal_stm_lvgl/tft/tft.h"
 #include "hal_stm_lvgl/touchpad/touchpad.h"
+#include "hal_stm_lvgl/scene/scene.h"
+#include "hal_mx66uw1g45g/mx66uw1g45g.h"
 
 /* USER CODE END Includes */
 
@@ -52,6 +54,8 @@ DMA2D_HandleTypeDef hdma2d;
 
 GPU2D_HandleTypeDef hgpu2d;
 
+XSPI_HandleTypeDef hxspi1;
+
 I2C_HandleTypeDef hi2c2;
 
 LTDC_HandleTypeDef hltdc;
@@ -70,6 +74,7 @@ static void MX_DCACHE1_Init(void);
 static void MX_DCACHE2_Init(void);
 static void MX_DMA2D_Init(void);
 static void MX_GPU2D_Init(void);
+static void MX_HSPI1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -115,12 +120,13 @@ int main(void)
   MX_DCACHE2_Init();
   MX_DMA2D_Init();
   MX_GPU2D_Init();
+  MX_HSPI1_Init();
   /* USER CODE BEGIN 2 */
   tft_init();
   touchpad_init();
-  lv_demo_benchmark();
+  // lv_demo_benchmark();
   // create_test_scene();
-  // load_test_image();
+  create_image_scroller();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -312,6 +318,69 @@ static void MX_GPU2D_Init(void)
 }
 
 /**
+  * @brief HSPI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_HSPI1_Init(void)
+{
+
+  /* USER CODE BEGIN HSPI1_Init 0 */
+
+  /* USER CODE END HSPI1_Init 0 */
+
+  /* USER CODE BEGIN HSPI1_Init 1 */
+
+  /* USER CODE END HSPI1_Init 1 */
+  /* HSPI1 parameter configuration*/
+  hxspi1.Instance = HSPI1;
+  hxspi1.Init.FifoThresholdByte = 4;
+  hxspi1.Init.MemoryMode = HAL_XSPI_SINGLE_MEM;
+  hxspi1.Init.MemoryType = HAL_XSPI_MEMTYPE_MACRONIX;
+  hxspi1.Init.MemorySize = HAL_XSPI_SIZE_1GB;
+  hxspi1.Init.ChipSelectHighTimeCycle = 2;
+  hxspi1.Init.FreeRunningClock = HAL_XSPI_FREERUNCLK_DISABLE;
+  hxspi1.Init.ClockMode = HAL_XSPI_CLOCK_MODE_0;
+  hxspi1.Init.WrapSize = HAL_XSPI_WRAP_NOT_SUPPORTED;
+  hxspi1.Init.ClockPrescaler = 0;
+  hxspi1.Init.SampleShifting = HAL_XSPI_SAMPLE_SHIFT_NONE;
+  hxspi1.Init.DelayHoldQuarterCycle = HAL_XSPI_DHQC_DISABLE;
+  hxspi1.Init.ChipSelectBoundary = HAL_XSPI_BONDARYOF_NONE;
+  hxspi1.Init.MaxTran = 0;
+  hxspi1.Init.Refresh = 0;
+  if (HAL_XSPI_Init(&hxspi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN HSPI1_Init 2 */
+
+  // Reset flash
+  MX66UW1G45G_ResetEnable(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER);
+  MX66UW1G45G_ResetMemory(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER);
+  HAL_Delay(MX66UW1G45G_RESET_MAX_TIME);
+
+  /* Enable write operations */
+  MX66UW1G45G_WriteEnable(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER);
+
+  /* Write Configuration register 2 (with new dummy cycles) */
+  MX66UW1G45G_WriteCfg2Register(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER, MX66UW1G45G_CR2_REG3_ADDR, MX66UW1G45G_CR2_DC_6_CYCLES);
+
+  /* Enable write operations */
+  MX66UW1G45G_WriteEnable(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER);
+
+  /* Write Configuration register 2 (with Octal I/O SPI protocol) */
+  MX66UW1G45G_WriteCfg2Register(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER, MX66UW1G45G_CR2_REG1_ADDR, MX66UW1G45G_CR2_DOPI);
+
+  /* Wait that the configuration is effective and check that memory is ready */
+  HAL_Delay(MX66UW1G45G_WRITE_REG_MAX_TIME);
+
+  MX66UW1G45G_EnableDTRMemoryMappedMode(&hxspi1, MX66UW1G45G_OPI_MODE);
+
+  /* USER CODE END HSPI1_Init 2 */
+
+}
+
+/**
   * @brief I2C2 Initialization Function
   * @param None
   * @retval None
@@ -471,6 +540,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOI_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LCD_ON_GPIO_Port, LCD_ON_Pin, GPIO_PIN_SET);
