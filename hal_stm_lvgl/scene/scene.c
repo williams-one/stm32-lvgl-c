@@ -36,6 +36,14 @@ void create_test_scene(void)
   lv_line_set_points(line3, line_points_3, 3);
   lv_obj_t* line4 = lv_line_create(lv_screen_active());
   lv_line_set_points(line4, line_points_4, 3);
+
+  lv_obj_t* slider1 = lv_slider_create(lv_screen_active());
+  lv_obj_set_width(slider1, 200);
+  lv_obj_align(slider1, LV_ALIGN_BOTTOM_MID, 0, -40);
+
+  lv_obj_t* bar1 = lv_bar_create(lv_screen_active());
+  lv_obj_set_size(bar1, 200, 50);
+  lv_obj_align(bar1, LV_ALIGN_BOTTOM_MID, 0, -100);
 }
 
 void create_image_scroller(void)
