@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file lv_conf.h
  * Configuration file for v9.3.0-dev
  */
@@ -27,7 +27,7 @@
  *====================*/
 
 /** Color depth: 1 (I1), 8 (L8), 16 (RGB565), 24 (RGB888), 32 (XRGB8888) */
-#define LV_COLOR_DEPTH 16
+#define LV_COLOR_DEPTH 24
 
 /*=========================
    STDLIB WRAPPER SETTINGS
@@ -88,7 +88,7 @@
  *====================*/
 
 /** Default display refresh, input device read and animation step period. */
-#define LV_DEF_REFR_PERIOD  16      /**< [ms] */
+#define LV_DEF_REFR_PERIOD  5      /**< [ms] */
 
 /** Default Dots Per Inch. Used to initialize default sizes such as widgets sized, style paddings.
  * (Not so important, you can adjust it to modify default sizes and spaces.) */
@@ -174,6 +174,10 @@
     #define LV_DRAW_SW_SUPPORT_A8           1
     #define LV_DRAW_SW_SUPPORT_I1           1
 
+    /* The threshold of the luminance to consider a pixel as
+     * active in indexed color format */
+    #define LV_DRAW_SW_I1_LUM_THRESHOLD 127
+
     /** Set number of draw units.
      *  - > 1 requires operating system to be enabled in `LV_USE_OS`.
      *  - > 1 means multiple threads will render the screen in parallel. */
@@ -226,7 +230,7 @@
     #endif
 
     /*Enable Vector Graphics Operations. Available only if NemaVG library is present*/
-    #define LV_USE_NEMA_VG 1
+    #define LV_USE_NEMA_VG 0
     #if LV_USE_NEMA_VG
         /*Define application's resolution used for VG related buffer allocation */
         #define LV_NEMA_GFX_MAX_RESX 800
@@ -791,7 +795,7 @@
 /* File system interfaces for common APIs */
 
 /** Setting a default driver letter allows skipping the driver prefix in filepaths. */
-#define LV_FS_DEFAULT_DRIVE_LETTER '\0'
+#define LV_FS_DEFAULT_DRIVER_LETTER '\0'
 
 /** API for fopen, fread, etc. */
 #define LV_USE_FS_STDIO 0
@@ -850,6 +854,12 @@
 #if LV_USE_FS_ARDUINO_SD
     #define LV_FS_ARDUINO_SD_LETTER '\0'          /**< Set an upper cased letter on which the drive will accessible (e.g. 'A') */
     #define LV_FS_ARDUINO_SD_PATH ""         /**< Set the working directory. File/directory paths will be appended to it. */
+#endif
+
+/** API for UEFI */
+#define LV_USE_FS_UEFI 0
+#if LV_USE_FS_UEFI
+    #define LV_FS_UEFI_LETTER '\0'          /**< Set an upper cased letter on which the drive will accessible (e.g. 'A') */
 #endif
 
 /** LODEPNG decoder library */
@@ -1165,6 +1175,15 @@
 /** Driver for /dev/dri/card */
 #define LV_USE_LINUX_DRM        0
 
+#if LV_USE_LINUX_DRM
+
+    /* Use the MESA GBM library to allocate DMA buffers that can be
+     * shared across sub-systems and libraries using the Linux DMA-BUF API.
+     * The GBM library aims to provide a platform independent memory management system
+     * it supports the major GPU vendors - This option requires linking with libgbm */
+    #define LV_LINUX_DRM_GBM_BUFFERS 0
+#endif
+
 /** Interface for TFT_eSPI */
 #define LV_USE_TFT_ESPI         0
 
@@ -1205,6 +1224,13 @@
 
 /** LVGL Windows backend */
 #define LV_USE_WINDOWS    0
+
+/** LVGL UEFI backend */
+#define LV_USE_UEFI 0
+#if LV_USE_UEFI
+    #define LV_USE_UEFI_INCLUDE "myefi.h"   /**< Header that hides the actual framework (EDK2, gnu-efi, ...) */
+    #define LV_UEFI_USE_MEMORY_SERVICES 0   /**< Use the memory functions from the boot services table */
+#endif
 
 /** Use OpenGL to open window on PC and handle mouse and keyboard */
 #define LV_USE_OPENGLES   0
@@ -1275,6 +1301,12 @@
 #if LV_USE_DEMO_EBIKE
 	#define LV_DEMO_EBIKE_PORTRAIT  0    /*0: for 480x270..480x320, 1: for 480x800..720x1280*/
 #endif
+
+/** High-resolution demo */
+#define LV_USE_DEMO_HIGH_RES        0
+
+/* Smart watch demo */
+#define LV_USE_DEMO_SMARTWATCH      0
 
 /*--END OF LV_CONF_H--*/
 
