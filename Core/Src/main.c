@@ -125,8 +125,9 @@ int main(void)
   tft_init();
   touchpad_init();
   // lv_demo_benchmark();
-  create_test_scene();
-  // create_image_scroller();
+  // create_test_scene();
+  create_image_scroller();
+  // create_image_library();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -138,6 +139,8 @@ int main(void)
     /* USER CODE BEGIN 3 */
   	lv_timer_handler();
   	HAL_Delay(1);
+
+    update_image_position();
   }
   /* USER CODE END 3 */
 }
@@ -501,7 +504,7 @@ static void MX_LTDC_Init(void)
   pLayerCfg.WindowX1 = 800;
   pLayerCfg.WindowY0 = 0;
   pLayerCfg.WindowY1 = 480;
-  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
+  pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB888;
   pLayerCfg.Alpha = 255;
   pLayerCfg.Alpha0 = 0;
   pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
