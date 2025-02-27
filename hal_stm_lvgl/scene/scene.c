@@ -1,5 +1,6 @@
 #include "scene.h"
 #include "lvgl/lvgl.h"
+#include "hal_stm_lvgl/tft/tft.h"
 
 #include <string.h>
 
@@ -52,22 +53,37 @@ void create_test_scene(void)
 
 #define MAX_IMAGES 3
 lv_obj_t* img[MAX_IMAGES] = {NULL, NULL, NULL};
-LV_IMAGE_DECLARE(image_1_800x480_tsc6);
-LV_IMAGE_DECLARE(image_2_800x480_tsc6a);
-LV_IMAGE_DECLARE(image_3_800x480_i8);
-// LV_IMAGE_DECLARE(internal_1_800x480_dither);
-// LV_IMAGE_DECLARE(internal_2_800x480_dither);
-// LV_IMAGE_DECLARE(external_1_800x480_dither);
-// LV_IMAGE_DECLARE(external_2_800x480_dither);
-const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
-  &image_1_800x480_tsc6,
-  &image_2_800x480_tsc6a,
-  &image_3_800x480_i8,
-//   &internal_1_800x480_dither,
-//   &internal_2_800x480_dither,
-//   &external_1_800x480_dither,
-//   &external_2_800x480_dither
-};
+#if defined(RESOLUTION_800x480)
+  LV_IMAGE_DECLARE(image_1_800x480_tsc6);
+  LV_IMAGE_DECLARE(image_2_800x480_tsc6a);
+  LV_IMAGE_DECLARE(image_3_800x480_i8);
+  // LV_IMAGE_DECLARE(internal_1_800x480_dither);
+  // LV_IMAGE_DECLARE(internal_2_800x480_dither);
+  // LV_IMAGE_DECLARE(external_1_800x480_dither);
+  // LV_IMAGE_DECLARE(external_2_800x480_dither);
+  const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
+    &image_1_800x480_tsc6,
+    &image_2_800x480_tsc6a,
+    &image_3_800x480_i8,
+    // &internal_1_800x480_dither,
+    // &internal_2_800x480_dither,
+    // &external_1_800x480_dither,
+    // &external_2_800x480_dither
+  };
+#elif defined(RESOLUTION_480x272)
+  LV_IMAGE_DECLARE(image_1_480x272_argb8888);
+  LV_IMAGE_DECLARE(image_1_480x272_tsc6);
+  LV_IMAGE_DECLARE(image_2_480x272_tsc6a);
+  LV_IMAGE_DECLARE(image_3_480x272_i8);
+  const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
+    &image_1_480x272_tsc6,
+    &image_1_480x272_tsc6,
+    &image_1_480x272_tsc6,
+    // &image_1_480x272_argb8888,
+    // &image_1_480x272_argb8888,
+    // &image_1_480x272_argb8888,
+  };
+#endif
 
 static void create_images(int image_count, bool scrollable)
 {
@@ -75,7 +91,7 @@ static void create_images(int image_count, bool scrollable)
   {
     img[i] = lv_image_create(lv_screen_active());
     lv_image_set_src(img[i], image_dsc[i]);
-    lv_obj_align(img[i], LV_ALIGN_TOP_LEFT, scrollable ? 800 * i : 0, 0 );
+    lv_obj_align(img[i], LV_ALIGN_TOP_LEFT, scrollable ? TFT_HOR_RES * i : 0, 0 );
   }
 }
 
@@ -161,7 +177,7 @@ void update_rect_blended(void)
 void update_image_position(void)
 {
   const uint16_t SCALE_FACTOR = 3;
-  const int32_t MAX_X = ((MAX_IMAGES - 1) * 800) << SCALE_FACTOR;
+  const int32_t MAX_X = ((MAX_IMAGES - 1) * TFT_HOR_RES) << SCALE_FACTOR;
   const uint16_t STEP = 2;
 
   static int32_t x = 0;
@@ -182,7 +198,7 @@ void update_image_position(void)
   }
 
   for (int i = 0; i < MAX_IMAGES; i++)
-    lv_obj_set_pos(img[i], -(x >> SCALE_FACTOR) + i * 800, 0);
+    lv_obj_set_pos(img[i], -(x >> SCALE_FACTOR) + i * TFT_HOR_RES, 0);
 }
 
 
