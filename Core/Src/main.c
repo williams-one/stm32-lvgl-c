@@ -371,6 +371,12 @@ static void MX_HSPI1_Init(void)
   /* Enable write operations */
   MX66UW1G45G_WriteEnable(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER);
 
+#define MEMORY_MAPPED_MODE_OCTO_DTR
+// #define MEMORY_MAPPED_MODE_OCTO_STR
+// SINGLE_DTR is not supported
+// #define MEMORY_MAPPED_MODE_SINGLE_STR
+
+#if defined(MEMORY_MAPPED_MODE_OCTO_DTR)
   /* Write Configuration register 2 (with Octal I/O SPI protocol) */
   MX66UW1G45G_WriteCfg2Register(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER, MX66UW1G45G_CR2_REG1_ADDR, MX66UW1G45G_CR2_DOPI);
 
@@ -378,6 +384,19 @@ static void MX_HSPI1_Init(void)
   HAL_Delay(MX66UW1G45G_WRITE_REG_MAX_TIME);
 
   MX66UW1G45G_EnableDTRMemoryMappedMode(&hxspi1, MX66UW1G45G_OPI_MODE);
+#elif defined(MEMORY_MAPPED_MODE_OCTO_STR)
+  /* Write Configuration register 2 (with Octal I/O SPI protocol) */
+  MX66UW1G45G_WriteCfg2Register(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER, MX66UW1G45G_CR2_REG1_ADDR, MX66UW1G45G_CR2_SOPI);
+
+  /* Wait that the configuration is effective and check that memory is ready */
+  HAL_Delay(MX66UW1G45G_WRITE_REG_MAX_TIME);
+
+  MX66UW1G45G_EnableSTRMemoryMappedMode(&hxspi1, MX66UW1G45G_OPI_MODE, MX66UW1G45G_4BYTES_SIZE);
+#elif defined(MEMORY_MAPPED_MODE_SINGLE_STR)
+  MX66UW1G45G_EnableSTRMemoryMappedMode(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_3BYTES_SIZE);
+#else
+  #error "No memory mapped mode defined for MX66UW1G45G"
+#endif
 
   /* USER CODE END HSPI1_Init 2 */
 

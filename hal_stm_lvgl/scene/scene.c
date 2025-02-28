@@ -52,6 +52,7 @@ void create_test_scene(void)
 
 #define MAX_IMAGES 3
 lv_obj_t* img[MAX_IMAGES] = {NULL, NULL, NULL};
+LV_IMAGE_DECLARE(image_1_800x480_argb8888);
 LV_IMAGE_DECLARE(image_1_800x480_tsc6);
 LV_IMAGE_DECLARE(image_2_800x480_tsc6a);
 LV_IMAGE_DECLARE(image_3_800x480_i8);
@@ -63,10 +64,16 @@ const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
   &image_1_800x480_tsc6,
   &image_2_800x480_tsc6a,
   &image_3_800x480_i8,
-//   &internal_1_800x480_dither,
-//   &internal_2_800x480_dither,
-//   &external_1_800x480_dither,
-//   &external_2_800x480_dither
+  // &internal_1_800x480_dither,
+  // &internal_2_800x480_dither,
+  // &external_1_800x480_dither,
+  // &external_2_800x480_dither
+//   &image_1_800x480_tsc6,
+//   &image_1_800x480_tsc6,
+//   &image_1_800x480_tsc6,
+  // &image_1_800x480_argb8888,
+  // &image_1_800x480_argb8888,
+  // &image_1_800x480_argb8888,
 };
 
 static void create_images(int image_count, bool scrollable)
