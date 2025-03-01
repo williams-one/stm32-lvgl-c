@@ -55,11 +55,10 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
-void EXTI5_IRQHandler(void);
-void I2C2_EV_IRQHandler(void);
-void I2C2_ER_IRQHandler(void);
-void HSPI1_IRQHandler(void);
+void EXTI7_IRQHandler(void);
+void I2C1_EV_IRQHandler(void);
 void GPU2D_IRQHandler(void);
+void GPU2D_ER_IRQHandler(void);
 void LTDC_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 

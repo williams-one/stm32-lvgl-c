@@ -10,14 +10,12 @@
  *      INCLUDES
  *********************/
 #include <stdint.h>
-#include "lvgl/src/misc/lv_color.h"
-#include "lvgl/src/misc/lv_area.h"
 
 /*********************
  *      DEFINES
  *********************/
-#define RESOLUTION_800x480
-// #define RESOLUTION_480x272
+// #define RESOLUTION_800x480
+#define RESOLUTION_480x272
 
 #if defined(RESOLUTION_800x480)
   #define TFT_HOR_RES 800

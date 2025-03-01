@@ -57,8 +57,7 @@
 
 /* External variables --------------------------------------------------------*/
 extern GPU2D_HandleTypeDef hgpu2d;
-extern XSPI_HandleTypeDef hxspi1;
-extern I2C_HandleTypeDef hi2c2;
+extern I2C_HandleTypeDef hi2c1;
 extern LTDC_HandleTypeDef hltdc;
 /* USER CODE BEGIN EV */
 
@@ -204,59 +203,31 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
-  * @brief This function handles EXTI Line5 interrupt.
+  * @brief This function handles EXTI Line7 interrupt.
   */
-void EXTI5_IRQHandler(void)
+void EXTI7_IRQHandler(void)
 {
-  /* USER CODE BEGIN EXTI5_IRQn 0 */
+  /* USER CODE BEGIN EXTI7_IRQn 0 */
 
-  /* USER CODE END EXTI5_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(TP_IRQ_Pin);
-  /* USER CODE BEGIN EXTI5_IRQn 1 */
+  /* USER CODE END EXTI7_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(TS_IRQ_Pin);
+  /* USER CODE BEGIN EXTI7_IRQn 1 */
 
-  /* USER CODE END EXTI5_IRQn 1 */
+  /* USER CODE END EXTI7_IRQn 1 */
 }
 
 /**
-  * @brief This function handles I2C2 Event interrupt.
+  * @brief This function handles I2C1 Event interrupt.
   */
-void I2C2_EV_IRQHandler(void)
+void I2C1_EV_IRQHandler(void)
 {
-  /* USER CODE BEGIN I2C2_EV_IRQn 0 */
+  /* USER CODE BEGIN I2C1_EV_IRQn 0 */
 
-  /* USER CODE END I2C2_EV_IRQn 0 */
-  HAL_I2C_EV_IRQHandler(&hi2c2);
-  /* USER CODE BEGIN I2C2_EV_IRQn 1 */
+  /* USER CODE END I2C1_EV_IRQn 0 */
+  HAL_I2C_EV_IRQHandler(&hi2c1);
+  /* USER CODE BEGIN I2C1_EV_IRQn 1 */
 
-  /* USER CODE END I2C2_EV_IRQn 1 */
-}
-
-/**
-  * @brief This function handles I2C2 Error interrupt.
-  */
-void I2C2_ER_IRQHandler(void)
-{
-  /* USER CODE BEGIN I2C2_ER_IRQn 0 */
-
-  /* USER CODE END I2C2_ER_IRQn 0 */
-  HAL_I2C_ER_IRQHandler(&hi2c2);
-  /* USER CODE BEGIN I2C2_ER_IRQn 1 */
-
-  /* USER CODE END I2C2_ER_IRQn 1 */
-}
-
-/**
-  * @brief This function handles HSPI1 global interrupt.
-  */
-void HSPI1_IRQHandler(void)
-{
-  /* USER CODE BEGIN HSPI1_IRQn 0 */
-
-  /* USER CODE END HSPI1_IRQn 0 */
-  HAL_XSPI_IRQHandler(&hxspi1);
-  /* USER CODE BEGIN HSPI1_IRQn 1 */
-
-  /* USER CODE END HSPI1_IRQn 1 */
+  /* USER CODE END I2C1_EV_IRQn 1 */
 }
 
 /**
@@ -271,6 +242,20 @@ void GPU2D_IRQHandler(void)
   /* USER CODE BEGIN GPU2D_IRQn 1 */
 
   /* USER CODE END GPU2D_IRQn 1 */
+}
+
+/**
+  * @brief This function handles GPU2D Error interrupt.
+  */
+void GPU2D_ER_IRQHandler(void)
+{
+  /* USER CODE BEGIN GPU2D_ER_IRQn 0 */
+
+  /* USER CODE END GPU2D_ER_IRQn 0 */
+  HAL_GPU2D_ER_IRQHandler(&hgpu2d);
+  /* USER CODE BEGIN GPU2D_ER_IRQn 1 */
+
+  /* USER CODE END GPU2D_ER_IRQn 1 */
 }
 
 /**
