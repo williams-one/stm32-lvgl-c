@@ -76,12 +76,18 @@ lv_obj_t* img[MAX_IMAGES] = {NULL, NULL, NULL};
   LV_IMAGE_DECLARE(image_2_480x272_tsc6a);
   LV_IMAGE_DECLARE(image_3_480x272_i8);
   const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
-    &image_1_480x272_tsc6,
-    &image_1_480x272_tsc6,
-    &image_1_480x272_tsc6,
+    // &image_1_480x272_tsc6,
+    // &image_1_480x272_tsc6,
+    // &image_1_480x272_tsc6,
+    // &image_3_480x272_i8,
+    // &image_3_480x272_i8,
+    // &image_3_480x272_i8,
     // &image_1_480x272_argb8888,
     // &image_1_480x272_argb8888,
     // &image_1_480x272_argb8888,
+    &image_1_480x272_tsc6,
+    &image_2_480x272_tsc6a,
+    &image_3_480x272_i8,
   };
 #endif
 

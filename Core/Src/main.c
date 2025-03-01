@@ -26,6 +26,7 @@
 #include "hal_stm_lvgl/tft/tft.h"
 #include "hal_stm_lvgl/touchpad/touchpad.h"
 #include "hal_stm_lvgl/scene/scene.h"
+#include "hal_is25lp032d/is25lp032d_lae.h"
 #include "hal_is25lp032d/is25lp032d.h"
 
 /* USER CODE END Includes */
@@ -68,7 +69,6 @@ TIM_HandleTypeDef htim2;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void SystemPower_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_LTDC_Init(void);
@@ -107,9 +107,6 @@ int main(void)
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
-
-  /* Configure the System Power */
-  SystemPower_Config();
 
   /* Configure the system clock */
   SystemClock_Config();
@@ -171,11 +168,8 @@ void SystemClock_Config(void)
 
   /** Initializes the CPU, AHB and APB buses clocks
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE
-                              |RCC_OSCILLATORTYPE_MSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE|RCC_OSCILLATORTYPE_MSI;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.MSIState = RCC_MSI_ON;
   RCC_OscInitStruct.MSICalibrationValue = RCC_MSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_0;
@@ -209,21 +203,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief Power Configuration
-  * @retval None
-  */
-static void SystemPower_Config(void)
-{
-
-  /*
-   * Disable the internal Pull-Up in Dead Battery pins of UCPD peripheral
-   */
-  HAL_PWREx_DisableUCPDDeadBattery();
-/* USER CODE BEGIN PWR */
-/* USER CODE END PWR */
 }
 
 /**
@@ -514,15 +493,15 @@ static void MX_OCTOSPI1_Init(void)
   hospi1.Init.FifoThreshold = 1;
   hospi1.Init.DualQuad = HAL_OSPI_DUALQUAD_DISABLE;
   hospi1.Init.MemoryType = HAL_OSPI_MEMTYPE_MICRON;
-  hospi1.Init.DeviceSize = 22;
-  hospi1.Init.ChipSelectHighTime = 1;
+  hospi1.Init.DeviceSize = 21;
+  hospi1.Init.ChipSelectHighTime = 2;
   hospi1.Init.FreeRunningClock = HAL_OSPI_FREERUNCLK_DISABLE;
   hospi1.Init.ClockMode = HAL_OSPI_CLOCK_MODE_0;
   hospi1.Init.WrapSize = HAL_OSPI_WRAP_NOT_SUPPORTED;
-  hospi1.Init.ClockPrescaler = 2;
+  hospi1.Init.ClockPrescaler = 1;
   hospi1.Init.SampleShifting = HAL_OSPI_SAMPLE_SHIFTING_NONE;
   hospi1.Init.DelayHoldQuarterCycle = HAL_OSPI_DHQC_DISABLE;
-  hospi1.Init.ChipSelectBoundary = 8;
+  hospi1.Init.ChipSelectBoundary = 0;
   hospi1.Init.DelayBlockBypass = HAL_OSPI_DELAY_BLOCK_BYPASSED;
   hospi1.Init.MaxTran = 0;
   hospi1.Init.Refresh = 0;
@@ -545,22 +524,78 @@ static void MX_OCTOSPI1_Init(void)
   }
   /* USER CODE BEGIN OCTOSPI1_Init 2 */
 
-  if (IS25LP032D_ResetChip() != HAL_OK)
+//#define USE_IS25LP032D_LAE_DRIVER
+//#define USE_IS25LP032D_CUSTOM_STR_DRIVER
+#define USE_IS25LP032D_CUSTOM_DTR_DRIVER
+
+  /* Reset flash memory */
+  if (IS25LP032D_ResetEnable(&hospi1, IS25LP032D_SPI_MODE) != IS25LP032D_OK)
+    Error_Handler();
+
+  if (IS25LP032D_ResetMemory(&hospi1, IS25LP032D_SPI_MODE) != IS25LP032D_OK)
+    Error_Handler();
+
+  if (IS25LP032D_ResetEnable(&hospi1, IS25LP032D_QPI_MODE) != IS25LP032D_OK)
+    Error_Handler();
+
+  if (IS25LP032D_ResetMemory(&hospi1, IS25LP032D_QPI_MODE) != IS25LP032D_OK)
+    Error_Handler();
+
+  HAL_Delay(IS25LP032D_RESET_MAX_TIME);
+
+  /* Enable write operations */
+  if (IS25LP032D_WriteEnable(&hospi1, IS25LP032D_SPI_MODE) != IS25LP032D_OK)
+    Error_Handler();
+
+  //   /* Write Configuration register 2 (with new dummy cycles) */
+  //   MX66UW1G45G_WriteCfg2Register(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER, MX66UW1G45G_CR2_REG3_ADDR, MX66UW1G45G_CR2_DC_6_CYCLES);
+
+  //   /* Enable write operations */
+  //   MX66UW1G45G_WriteEnable(&hxspi1, MX66UW1G45G_SPI_MODE, MX66UW1G45G_STR_TRANSFER);
+
+  /* Clear QE (if set) and enable QPI mode  */
+  uint8_t status_register = 0;
+  if (IS25LP032D_ReadStatusRegister(&hospi1, IS25LP032D_SPI_MODE, &status_register) != IS25LP032D_OK)
+    Error_Handler();
+
+  status_register &= ~IS25LP032D_SR_QE_QUAD_ENABLE;
+
+  if (IS25LP032D_WriteStatusRegister(&hospi1, IS25LP032D_SPI_MODE, status_register) != IS25LP032D_OK)
+    Error_Handler();
+
+  HAL_Delay(IS25LP032D_WRITE_REG_MAX_TIME);
+
+#if defined(USE_IS25LP032D_CUSTOM_STR_DRIVER) || defined(USE_IS25LP032D_CUSTOM_DTR_DRIVER)
+  if (IS25LP032D_EnterQPIMode(&hospi1) != IS25LP032D_OK)
+    Error_Handler();
+
+  /* Enable memory mapped mode with STR transfers */
+#ifdef USE_IS25LP032D_CUSTOM_STR_DRIVER
+  if (IS25LP032D_EnableMemoryMappedModeSTR(&hospi1, IS25LP032D_QPI_MODE) != IS25LP032D_OK)
+    Error_Handler();
+#else
+  if (IS25LP032D_EnableMemoryMappedModeDTR(&hospi1, IS25LP032D_QPI_MODE) != IS25LP032D_OK)
+    Error_Handler();
+#endif
+
+#elif defined(USE_IS25LP032D_LAE_DRIVER)
+
+  if (OSPI_ResetChip() != HAL_OK)
     Error_Handler();
 
   HAL_Delay(5);
 
-  if (IS25LP032D_AutoPollingMemReady(HAL_OSPI_TIMEOUT_DEFAULT_VALUE) != HAL_OK)
+  if (OSPI_WriteEnable() != HAL_OK)
     Error_Handler();
 
-  if (IS25LP032D_WriteEnable() != HAL_OK)
+  if (OSPI_Configuration() != HAL_OK)
     Error_Handler();
 
-  if (IS25LP032D_ConfigureMemory() != HAL_OK)
+  if(OSPI_EnableMemoryMappedMode() != HAL_OK)
     Error_Handler();
-
-  if(IS25LP032D_EnableMemoryMappedMode() != HAL_OK)
-    Error_Handler();
+#else
+  #error "No flash driver selected"
+#endif
 
   /* USER CODE END OCTOSPI1_Init 2 */
 
@@ -601,7 +636,7 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 40000;
+  sConfigOC.Pulse = 25000;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)

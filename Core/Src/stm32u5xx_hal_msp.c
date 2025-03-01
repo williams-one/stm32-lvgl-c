@@ -531,14 +531,14 @@ void HAL_OSPI_MspInit(OSPI_HandleTypeDef* hospi)
   */
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_OSPI;
     PeriphClkInit.OspiClockSelection = RCC_OSPICLKSOURCE_PLL2;
-    PeriphClkInit.PLL2.PLL2Source = RCC_PLLSOURCE_HSI;
+    PeriphClkInit.PLL2.PLL2Source = RCC_PLLSOURCE_HSE;
     PeriphClkInit.PLL2.PLL2M = 1;
-    PeriphClkInit.PLL2.PLL2N = 30;
+    PeriphClkInit.PLL2.PLL2N = 8;
     PeriphClkInit.PLL2.PLL2P = 2;
-    PeriphClkInit.PLL2.PLL2Q = 4;
+    PeriphClkInit.PLL2.PLL2Q = 2;
     PeriphClkInit.PLL2.PLL2R = 1;
     PeriphClkInit.PLL2.PLL2RGE = RCC_PLLVCIRANGE_1;
-    PeriphClkInit.PLL2.PLL2FRACN = 0;
+    PeriphClkInit.PLL2.PLL2FRACN = 2048.0;
     PeriphClkInit.PLL2.PLL2ClockOut = RCC_PLL2_DIVQ;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
     {
