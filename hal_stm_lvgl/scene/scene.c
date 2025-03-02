@@ -56,21 +56,15 @@ LV_IMAGE_DECLARE(image_1_800x480_tsc6);
 LV_IMAGE_DECLARE(image_2_800x480_tsc6a);
 LV_IMAGE_DECLARE(image_3_800x480_i8);
 LV_IMAGE_DECLARE(image_4_800x480_argb8888);
+LV_IMAGE_DECLARE(image_5_800x480_i8);
 LV_IMAGE_DECLARE(internal_1_800x480_dither);
 LV_IMAGE_DECLARE(internal_2_800x480_dither);
 LV_IMAGE_DECLARE(external_1_800x480_dither);
 LV_IMAGE_DECLARE(external_2_800x480_dither);
 
-#define SINGLE_IMAGE_BENCHMARK
+// #define SINGLE_IMAGE_BENCHMARK
 
 #ifdef SINGLE_IMAGE_BENCHMARK
-const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
-  &image_1_800x480_tsc6,
-  &image_2_800x480_tsc6a,
-  &image_3_800x480_i8,
-  &image_4_800x480_argb8888,
-};
-#else
 #define SINGLE_IMAGE_NAME image_4_800x480_argb8888
 
 const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
@@ -78,6 +72,13 @@ const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
   &SINGLE_IMAGE_NAME,
   &SINGLE_IMAGE_NAME,
   &SINGLE_IMAGE_NAME,
+};
+#else
+const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
+  &image_1_800x480_tsc6,
+  &image_5_800x480_i8,
+  &image_4_800x480_argb8888,
+  &image_2_800x480_tsc6a,
 };
 #endif
 
