@@ -32,8 +32,11 @@ C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\ima
 C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_1_800x480_tsc6.png -o hal_stm_lvgl\images --ofmt C --cf NEMA_TSC6 --nemagfx --memorysection ExtFlashSection
 C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_2_800x480_tsc6a.png -o hal_stm_lvgl\images --ofmt C --cf NEMA_TSC6A --nemagfx --memorysection ExtFlashSection
 C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_3_800x480_i8.png -o hal_stm_lvgl\images --ofmt C --cf I8 --nemagfx --memorysection ExtFlashSection
+C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_4_800x480_argb8888.png -o hal_stm_lvgl\images --ofmt C --cf ARGB8888 --nemagfx --memorysection ExtFlashSection
+C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_5_800x480_i8.png -o hal_stm_lvgl\images --ofmt C --cf I8 --nemagfx --memorysection ExtFlashSection
 
 C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_1_480x272_tsc6.png -o hal_stm_lvgl\images --ofmt C --cf NEMA_TSC6 --nemagfx --memorysection ExtFlashSection
 C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_2_480x272_tsc6a.png -o hal_stm_lvgl\images --ofmt C --cf NEMA_TSC6A --nemagfx --memorysection ExtFlashSection
 C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_3_480x272_i8.png -o hal_stm_lvgl\images --ofmt C --cf I8 --nemagfx --memorysection ExtFlashSection
-C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_1_480x272_argb8888.png -o hal_stm_lvgl\images --ofmt C --cf ARGB8888 --nemagfx --memorysection ExtFlashSection
+C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_4_480x272_argb8888.png -o hal_stm_lvgl\images --ofmt C --cf ARGB8888 --nemagfx --memorysection ExtFlashSection
+C:/tools/lvgl_image_converter/lvgl_image_converter.exe .\hal_stm_lvgl\images\image_5_480x272_i8.png -o hal_stm_lvgl\images --ofmt C --cf I8 --nemagfx --memorysection ExtFlashSection

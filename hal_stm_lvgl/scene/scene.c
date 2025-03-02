@@ -51,44 +51,68 @@ void create_test_scene(void)
   lv_obj_align(bar1, LV_ALIGN_BOTTOM_MID, 0, -100);
 }
 
-#define MAX_IMAGES 3
-lv_obj_t* img[MAX_IMAGES] = {NULL, NULL, NULL};
+#define MAX_IMAGES 4
+lv_obj_t* img[MAX_IMAGES] = {NULL, NULL, NULL, NULL};
 #if defined(RESOLUTION_800x480)
-  LV_IMAGE_DECLARE(image_1_800x480_tsc6);
-  LV_IMAGE_DECLARE(image_2_800x480_tsc6a);
-  LV_IMAGE_DECLARE(image_3_800x480_i8);
-  // LV_IMAGE_DECLARE(internal_1_800x480_dither);
-  // LV_IMAGE_DECLARE(internal_2_800x480_dither);
-  // LV_IMAGE_DECLARE(external_1_800x480_dither);
-  // LV_IMAGE_DECLARE(external_2_800x480_dither);
-  const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
-    &image_1_800x480_tsc6,
-    &image_2_800x480_tsc6a,
-    &image_3_800x480_i8,
-    // &internal_1_800x480_dither,
-    // &internal_2_800x480_dither,
-    // &external_1_800x480_dither,
-    // &external_2_800x480_dither
-  };
+LV_IMAGE_DECLARE(image_1_800x480_tsc6);
+LV_IMAGE_DECLARE(image_2_800x480_tsc6a);
+LV_IMAGE_DECLARE(image_3_800x480_i8);
+LV_IMAGE_DECLARE(image_4_800x480_argb8888);
+LV_IMAGE_DECLARE(image_5_800x480_i8);
+LV_IMAGE_DECLARE(internal_1_800x480_dither);
+LV_IMAGE_DECLARE(internal_2_800x480_dither);
+LV_IMAGE_DECLARE(external_1_800x480_dither);
+LV_IMAGE_DECLARE(external_2_800x480_dither);
+
+// #define SINGLE_IMAGE_BENCHMARK
+
+#ifdef SINGLE_IMAGE_BENCHMARK
+#define SINGLE_IMAGE_NAME image_4_800x480_argb8888
+
+const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
+  &SINGLE_IMAGE_NAME,
+  &SINGLE_IMAGE_NAME,
+  &SINGLE_IMAGE_NAME,
+  &SINGLE_IMAGE_NAME,
+};
+#else
+const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
+  &image_1_800x480_tsc6,
+  &image_5_800x480_i8,
+  &image_4_800x480_argb8888,
+  &image_2_800x480_tsc6a,
+};
+#endif
 #elif defined(RESOLUTION_480x272)
-  LV_IMAGE_DECLARE(image_1_480x272_argb8888);
-  LV_IMAGE_DECLARE(image_1_480x272_tsc6);
-  LV_IMAGE_DECLARE(image_2_480x272_tsc6a);
-  LV_IMAGE_DECLARE(image_3_480x272_i8);
-  const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
-    // &image_1_480x272_tsc6,
-    // &image_1_480x272_tsc6,
-    // &image_1_480x272_tsc6,
-    // &image_3_480x272_i8,
-    // &image_3_480x272_i8,
-    // &image_3_480x272_i8,
-    // &image_1_480x272_argb8888,
-    // &image_1_480x272_argb8888,
-    // &image_1_480x272_argb8888,
-    &image_1_480x272_tsc6,
-    &image_2_480x272_tsc6a,
-    &image_3_480x272_i8,
-  };
+LV_IMAGE_DECLARE(image_1_480x272_tsc6);
+LV_IMAGE_DECLARE(image_2_480x272_tsc6a);
+LV_IMAGE_DECLARE(image_3_480x272_i8);
+LV_IMAGE_DECLARE(image_4_480x272_argb8888);
+LV_IMAGE_DECLARE(image_5_480x272_i8);
+LV_IMAGE_DECLARE(internal_1_480x272_dither);
+LV_IMAGE_DECLARE(internal_2_480x272_dither);
+LV_IMAGE_DECLARE(external_1_480x272_dither);
+LV_IMAGE_DECLARE(external_2_480x272_dither);
+
+// #define SINGLE_IMAGE_BENCHMARK
+
+#ifdef SINGLE_IMAGE_BENCHMARK
+#define SINGLE_IMAGE_NAME image_4_480x272_argb8888
+
+const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
+  &SINGLE_IMAGE_NAME,
+  &SINGLE_IMAGE_NAME,
+  &SINGLE_IMAGE_NAME,
+  &SINGLE_IMAGE_NAME,
+};
+#else
+const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
+  &image_1_480x272_tsc6,
+  &image_5_480x272_i8,
+  &image_4_480x272_argb8888,
+  &image_2_480x272_tsc6a,
+};
+#endif
 #endif
 
 static void create_images(int image_count, bool scrollable)
