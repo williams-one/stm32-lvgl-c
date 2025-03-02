@@ -3,10 +3,10 @@
   <FileVersion>3.0</FileVersion>
   <Workspace>
     <WorkspaceType>Single-project</WorkspaceType>
-    <WorkspacePath>C:\projects\demo-board\st\stm32-lvgl-c\stm32-lvgl-c\</WorkspacePath>
+    <WorkspacePath>C:\projects\demo-board\freddy-lae\stm32-lvgl-c-freddy-lae\stm32-lvgl-c\</WorkspacePath>
     <underRoot>true</underRoot>
     <TrustZone>0</TrustZone>
-    <HAL_Driver>C:\Users\WilliamSpinelli\STM32Cube\Repository\STM32Cube_FW_U5_V1.6.0</HAL_Driver>
+    <HAL_Driver>C:\Users\WilliamSpinelli\STM32Cube\Repository\STM32Cube_FW_U5_V1.7.0</HAL_Driver>
     <CMSIS>Drivers/CMSIS</CMSIS>
     <Toolchain>STM32CubeIDE</Toolchain>
     <IocFile>stm32-lvgl-c.ioc</IocFile>
@@ -47,7 +47,7 @@
                 
           </memories>
               
-          <startup>C:\Users\WilliamSpinelli\STM32Cube\Repository\STM32Cube_FW_U5_V1.6.0\Drivers\CMSIS\Device\ST\STM32U5xx\Source\Templates\gcc\startup_stm32u599xx.s</startup>
+          <startup>C:\Users\WilliamSpinelli\STM32Cube\Repository\STM32Cube_FW_U5_V1.7.0\Drivers\CMSIS\Device\ST\STM32U5xx\Source\Templates\gcc\startup_stm32u599xx.s</startup>
                 
           <LinkSettings>
             	
@@ -66,11 +66,7 @@
               
           <optimization/>
               
-          <Aincludes>
-                    
-            <include/>
-                    
-          </Aincludes>
+          <Aincludes>        </Aincludes>
               
           <Adefines>        </Adefines>
                 
@@ -143,7 +139,7 @@
           <name>Drivers</name>
                   
         </sourceEntry>
-                	          
+        	          
       </sourceEntries>
       <Groups>    </Groups>
        

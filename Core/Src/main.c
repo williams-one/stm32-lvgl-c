@@ -524,8 +524,8 @@ static void MX_OCTOSPI1_Init(void)
   }
   /* USER CODE BEGIN OCTOSPI1_Init 2 */
 
-//#define USE_IS25LP032D_LAE_DRIVER
-//#define USE_IS25LP032D_CUSTOM_STR_DRIVER
+// #define USE_IS25LP032D_LAE_DRIVER
+// #define USE_IS25LP032D_CUSTOM_STR_DRIVER
 #define USE_IS25LP032D_CUSTOM_DTR_DRIVER
 
   /* Reset flash memory */
@@ -658,8 +658,8 @@ static void MX_TIM2_Init(void)
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOE_CLK_ENABLE();
@@ -767,8 +767,8 @@ static void MX_GPIO_Init(void)
   HAL_NVIC_SetPriority(EXTI7_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(EXTI7_IRQn);
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
