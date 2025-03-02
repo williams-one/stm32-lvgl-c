@@ -1,4 +1,3 @@
-
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -78,184 +77,184 @@ void HAL_MspInit(void)
 }
 
 /**
-* @brief DCACHE MSP Initialization
-* This function configures the hardware resources used in this example
-* @param hdcache: DCACHE handle pointer
-* @retval None
-*/
+  * @brief DCACHE MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hdcache: DCACHE handle pointer
+  * @retval None
+  */
 void HAL_DCACHE_MspInit(DCACHE_HandleTypeDef* hdcache)
 {
   if(hdcache->Instance==DCACHE1)
   {
-  /* USER CODE BEGIN DCACHE1_MspInit 0 */
+    /* USER CODE BEGIN DCACHE1_MspInit 0 */
 
-  /* USER CODE END DCACHE1_MspInit 0 */
+    /* USER CODE END DCACHE1_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_DCACHE1_CLK_ENABLE();
-  /* USER CODE BEGIN DCACHE1_MspInit 1 */
+    /* USER CODE BEGIN DCACHE1_MspInit 1 */
 
-  /* USER CODE END DCACHE1_MspInit 1 */
+    /* USER CODE END DCACHE1_MspInit 1 */
   }
   else if(hdcache->Instance==DCACHE2)
   {
-  /* USER CODE BEGIN DCACHE2_MspInit 0 */
+    /* USER CODE BEGIN DCACHE2_MspInit 0 */
 
-  /* USER CODE END DCACHE2_MspInit 0 */
+    /* USER CODE END DCACHE2_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_DCACHE2_CLK_ENABLE();
-  /* USER CODE BEGIN DCACHE2_MspInit 1 */
+    /* USER CODE BEGIN DCACHE2_MspInit 1 */
 
-  /* USER CODE END DCACHE2_MspInit 1 */
+    /* USER CODE END DCACHE2_MspInit 1 */
   }
 
 }
 
 /**
-* @brief DCACHE MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param hdcache: DCACHE handle pointer
-* @retval None
-*/
+  * @brief DCACHE MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hdcache: DCACHE handle pointer
+  * @retval None
+  */
 void HAL_DCACHE_MspDeInit(DCACHE_HandleTypeDef* hdcache)
 {
   if(hdcache->Instance==DCACHE1)
   {
-  /* USER CODE BEGIN DCACHE1_MspDeInit 0 */
+    /* USER CODE BEGIN DCACHE1_MspDeInit 0 */
 
-  /* USER CODE END DCACHE1_MspDeInit 0 */
+    /* USER CODE END DCACHE1_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_DCACHE1_CLK_DISABLE();
-  /* USER CODE BEGIN DCACHE1_MspDeInit 1 */
+    /* USER CODE BEGIN DCACHE1_MspDeInit 1 */
 
-  /* USER CODE END DCACHE1_MspDeInit 1 */
+    /* USER CODE END DCACHE1_MspDeInit 1 */
   }
   else if(hdcache->Instance==DCACHE2)
   {
-  /* USER CODE BEGIN DCACHE2_MspDeInit 0 */
+    /* USER CODE BEGIN DCACHE2_MspDeInit 0 */
 
-  /* USER CODE END DCACHE2_MspDeInit 0 */
+    /* USER CODE END DCACHE2_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_DCACHE2_CLK_DISABLE();
-  /* USER CODE BEGIN DCACHE2_MspDeInit 1 */
+    /* USER CODE BEGIN DCACHE2_MspDeInit 1 */
 
-  /* USER CODE END DCACHE2_MspDeInit 1 */
+    /* USER CODE END DCACHE2_MspDeInit 1 */
   }
 
 }
 
 /**
-* @brief DMA2D MSP Initialization
-* This function configures the hardware resources used in this example
-* @param hdma2d: DMA2D handle pointer
-* @retval None
-*/
+  * @brief DMA2D MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hdma2d: DMA2D handle pointer
+  * @retval None
+  */
 void HAL_DMA2D_MspInit(DMA2D_HandleTypeDef* hdma2d)
 {
   if(hdma2d->Instance==DMA2D)
   {
-  /* USER CODE BEGIN DMA2D_MspInit 0 */
+    /* USER CODE BEGIN DMA2D_MspInit 0 */
 
-  /* USER CODE END DMA2D_MspInit 0 */
+    /* USER CODE END DMA2D_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_DMA2D_CLK_ENABLE();
-  /* USER CODE BEGIN DMA2D_MspInit 1 */
+    /* USER CODE BEGIN DMA2D_MspInit 1 */
 
-  /* USER CODE END DMA2D_MspInit 1 */
+    /* USER CODE END DMA2D_MspInit 1 */
 
   }
 
 }
 
 /**
-* @brief DMA2D MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param hdma2d: DMA2D handle pointer
-* @retval None
-*/
+  * @brief DMA2D MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hdma2d: DMA2D handle pointer
+  * @retval None
+  */
 void HAL_DMA2D_MspDeInit(DMA2D_HandleTypeDef* hdma2d)
 {
   if(hdma2d->Instance==DMA2D)
   {
-  /* USER CODE BEGIN DMA2D_MspDeInit 0 */
+    /* USER CODE BEGIN DMA2D_MspDeInit 0 */
 
-  /* USER CODE END DMA2D_MspDeInit 0 */
+    /* USER CODE END DMA2D_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_DMA2D_CLK_DISABLE();
-  /* USER CODE BEGIN DMA2D_MspDeInit 1 */
+    /* USER CODE BEGIN DMA2D_MspDeInit 1 */
 
-  /* USER CODE END DMA2D_MspDeInit 1 */
+    /* USER CODE END DMA2D_MspDeInit 1 */
   }
 
 }
 
 /**
-* @brief GPU2D MSP Initialization
-* This function configures the hardware resources used in this example
-* @param hgpu2d: GPU2D handle pointer
-* @retval None
-*/
+  * @brief GPU2D MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hgpu2d: GPU2D handle pointer
+  * @retval None
+  */
 void HAL_GPU2D_MspInit(GPU2D_HandleTypeDef* hgpu2d)
 {
   if(hgpu2d->Instance==GPU2D)
   {
-  /* USER CODE BEGIN GPU2D_MspInit 0 */
+    /* USER CODE BEGIN GPU2D_MspInit 0 */
 
-  /* USER CODE END GPU2D_MspInit 0 */
+    /* USER CODE END GPU2D_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_GPU2D_CLK_ENABLE();
     __HAL_RCC_DCACHE2_CLK_ENABLE();
     /* GPU2D interrupt Init */
     HAL_NVIC_SetPriority(GPU2D_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(GPU2D_IRQn);
-  /* USER CODE BEGIN GPU2D_MspInit 1 */
+    /* USER CODE BEGIN GPU2D_MspInit 1 */
 
-  /* USER CODE END GPU2D_MspInit 1 */
+    /* USER CODE END GPU2D_MspInit 1 */
 
   }
 
 }
 
 /**
-* @brief GPU2D MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param hgpu2d: GPU2D handle pointer
-* @retval None
-*/
+  * @brief GPU2D MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hgpu2d: GPU2D handle pointer
+  * @retval None
+  */
 void HAL_GPU2D_MspDeInit(GPU2D_HandleTypeDef* hgpu2d)
 {
   if(hgpu2d->Instance==GPU2D)
   {
-  /* USER CODE BEGIN GPU2D_MspDeInit 0 */
+    /* USER CODE BEGIN GPU2D_MspDeInit 0 */
 
-  /* USER CODE END GPU2D_MspDeInit 0 */
+    /* USER CODE END GPU2D_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_GPU2D_CLK_DISABLE();
     __HAL_RCC_DCACHE2_CLK_DISABLE();
 
     /* GPU2D interrupt DeInit */
     HAL_NVIC_DisableIRQ(GPU2D_IRQn);
-  /* USER CODE BEGIN GPU2D_MspDeInit 1 */
+    /* USER CODE BEGIN GPU2D_MspDeInit 1 */
 
-  /* USER CODE END GPU2D_MspDeInit 1 */
+    /* USER CODE END GPU2D_MspDeInit 1 */
   }
 
 }
 
 /**
-* @brief XSPI MSP Initialization
-* This function configures the hardware resources used in this example
-* @param hxspi: XSPI handle pointer
-* @retval None
-*/
+  * @brief XSPI MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hxspi: XSPI handle pointer
+  * @retval None
+  */
 void HAL_XSPI_MspInit(XSPI_HandleTypeDef* hxspi)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
   if(hxspi->Instance==HSPI1)
   {
-  /* USER CODE BEGIN HSPI1_MspInit 0 */
+    /* USER CODE BEGIN HSPI1_MspInit 0 */
 
-  /* USER CODE END HSPI1_MspInit 0 */
+    /* USER CODE END HSPI1_MspInit 0 */
 
   /** Initializes the peripherals clock
   */
@@ -311,27 +310,27 @@ void HAL_XSPI_MspInit(XSPI_HandleTypeDef* hxspi)
     /* HSPI1 interrupt Init */
     HAL_NVIC_SetPriority(HSPI1_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(HSPI1_IRQn);
-  /* USER CODE BEGIN HSPI1_MspInit 1 */
+    /* USER CODE BEGIN HSPI1_MspInit 1 */
 
-  /* USER CODE END HSPI1_MspInit 1 */
+    /* USER CODE END HSPI1_MspInit 1 */
 
   }
 
 }
 
 /**
-* @brief XSPI MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param hxspi: XSPI handle pointer
-* @retval None
-*/
+  * @brief XSPI MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hxspi: XSPI handle pointer
+  * @retval None
+  */
 void HAL_XSPI_MspDeInit(XSPI_HandleTypeDef* hxspi)
 {
   if(hxspi->Instance==HSPI1)
   {
-  /* USER CODE BEGIN HSPI1_MspDeInit 0 */
+    /* USER CODE BEGIN HSPI1_MspDeInit 0 */
 
-  /* USER CODE END HSPI1_MspDeInit 0 */
+    /* USER CODE END HSPI1_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_HSPI1_CLK_DISABLE();
 
@@ -355,28 +354,28 @@ void HAL_XSPI_MspDeInit(XSPI_HandleTypeDef* hxspi)
 
     /* HSPI1 interrupt DeInit */
     HAL_NVIC_DisableIRQ(HSPI1_IRQn);
-  /* USER CODE BEGIN HSPI1_MspDeInit 1 */
+    /* USER CODE BEGIN HSPI1_MspDeInit 1 */
 
-  /* USER CODE END HSPI1_MspDeInit 1 */
+    /* USER CODE END HSPI1_MspDeInit 1 */
   }
 
 }
 
 /**
-* @brief I2C MSP Initialization
-* This function configures the hardware resources used in this example
-* @param hi2c: I2C handle pointer
-* @retval None
-*/
+  * @brief I2C MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hi2c: I2C handle pointer
+  * @retval None
+  */
 void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
   if(hi2c->Instance==I2C2)
   {
-  /* USER CODE BEGIN I2C2_MspInit 0 */
+    /* USER CODE BEGIN I2C2_MspInit 0 */
 
-  /* USER CODE END I2C2_MspInit 0 */
+    /* USER CODE END I2C2_MspInit 0 */
 
   /** Initializes the peripherals clock
   */
@@ -406,27 +405,27 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
     HAL_NVIC_EnableIRQ(I2C2_EV_IRQn);
     HAL_NVIC_SetPriority(I2C2_ER_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(I2C2_ER_IRQn);
-  /* USER CODE BEGIN I2C2_MspInit 1 */
+    /* USER CODE BEGIN I2C2_MspInit 1 */
 
-  /* USER CODE END I2C2_MspInit 1 */
+    /* USER CODE END I2C2_MspInit 1 */
 
   }
 
 }
 
 /**
-* @brief I2C MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param hi2c: I2C handle pointer
-* @retval None
-*/
+  * @brief I2C MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hi2c: I2C handle pointer
+  * @retval None
+  */
 void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
 {
   if(hi2c->Instance==I2C2)
   {
-  /* USER CODE BEGIN I2C2_MspDeInit 0 */
+    /* USER CODE BEGIN I2C2_MspDeInit 0 */
 
-  /* USER CODE END I2C2_MspDeInit 0 */
+    /* USER CODE END I2C2_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_I2C2_CLK_DISABLE();
 
@@ -441,28 +440,28 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
     /* I2C2 interrupt DeInit */
     HAL_NVIC_DisableIRQ(I2C2_EV_IRQn);
     HAL_NVIC_DisableIRQ(I2C2_ER_IRQn);
-  /* USER CODE BEGIN I2C2_MspDeInit 1 */
+    /* USER CODE BEGIN I2C2_MspDeInit 1 */
 
-  /* USER CODE END I2C2_MspDeInit 1 */
+    /* USER CODE END I2C2_MspDeInit 1 */
   }
 
 }
 
 /**
-* @brief LTDC MSP Initialization
-* This function configures the hardware resources used in this example
-* @param hltdc: LTDC handle pointer
-* @retval None
-*/
+  * @brief LTDC MSP Initialization
+  * This function configures the hardware resources used in this example
+  * @param hltdc: LTDC handle pointer
+  * @retval None
+  */
 void HAL_LTDC_MspInit(LTDC_HandleTypeDef* hltdc)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
   if(hltdc->Instance==LTDC)
   {
-  /* USER CODE BEGIN LTDC_MspInit 0 */
+    /* USER CODE BEGIN LTDC_MspInit 0 */
 
-  /* USER CODE END LTDC_MspInit 0 */
+    /* USER CODE END LTDC_MspInit 0 */
 
   /** Initializes the peripherals clock
   */
@@ -568,27 +567,27 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef* hltdc)
     /* LTDC interrupt Init */
     HAL_NVIC_SetPriority(LTDC_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(LTDC_IRQn);
-  /* USER CODE BEGIN LTDC_MspInit 1 */
+    /* USER CODE BEGIN LTDC_MspInit 1 */
 
-  /* USER CODE END LTDC_MspInit 1 */
+    /* USER CODE END LTDC_MspInit 1 */
 
   }
 
 }
 
 /**
-* @brief LTDC MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param hltdc: LTDC handle pointer
-* @retval None
-*/
+  * @brief LTDC MSP De-Initialization
+  * This function freeze the hardware resources used in this example
+  * @param hltdc: LTDC handle pointer
+  * @retval None
+  */
 void HAL_LTDC_MspDeInit(LTDC_HandleTypeDef* hltdc)
 {
   if(hltdc->Instance==LTDC)
   {
-  /* USER CODE BEGIN LTDC_MspDeInit 0 */
+    /* USER CODE BEGIN LTDC_MspDeInit 0 */
 
-  /* USER CODE END LTDC_MspDeInit 0 */
+    /* USER CODE END LTDC_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_LTDC_CLK_DISABLE();
 
@@ -636,9 +635,9 @@ void HAL_LTDC_MspDeInit(LTDC_HandleTypeDef* hltdc)
 
     /* LTDC interrupt DeInit */
     HAL_NVIC_DisableIRQ(LTDC_IRQn);
-  /* USER CODE BEGIN LTDC_MspDeInit 1 */
+    /* USER CODE BEGIN LTDC_MspDeInit 1 */
 
-  /* USER CODE END LTDC_MspDeInit 1 */
+    /* USER CODE END LTDC_MspDeInit 1 */
   }
 
 }
