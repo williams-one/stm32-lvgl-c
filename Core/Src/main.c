@@ -143,7 +143,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   	lv_timer_handler();
-  	// HAL_Delay(1);
+  	HAL_Delay(1);
 
     update_image_position();
   }
