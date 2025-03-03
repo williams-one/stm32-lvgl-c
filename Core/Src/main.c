@@ -137,8 +137,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    uint32_t timestamp = HAL_GetTick();
   	lv_timer_handler();
-  	HAL_Delay(1);
+    if ((HAL_GetTick() - timestamp) <= 15)
+  	  HAL_Delay(1);
 
     update_image_position();
   }
