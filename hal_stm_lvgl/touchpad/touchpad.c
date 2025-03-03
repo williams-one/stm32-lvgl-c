@@ -78,11 +78,14 @@ static void touchpad_read(lv_indev_t* indev, lv_indev_data_t* data)
       int16_t x = ((buf[1] & 0x0F) << 8) | buf[2];
       int16_t y = ((buf[3] & 0x0F) << 8) | buf[4];
 
-      data->point.x = x;
-      data->point.y = y;
-      last_x = data->point.x;
-      last_y = data->point.y;
-      data->state = LV_INDEV_STATE_PRESSED;
+      if (x <= TFT_HOR_RES && y <= TFT_VER_RES)
+      {
+        data->point.x = x;
+        data->point.y = y;
+        last_x = data->point.x;
+        last_y = data->point.y;
+        data->state = LV_INDEV_STATE_PRESSED;
+      }
     }
     else
     {
