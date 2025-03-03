@@ -143,7 +143,10 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   	lv_timer_handler();
-  	HAL_Delay(1);
+    uint32_t timestamp = HAL_GetTick();
+  	lv_timer_handler();
+    if ((HAL_GetTick() - timestamp) <= 15)
+  	  HAL_Delay(1);
 
     update_image_position();
   }
