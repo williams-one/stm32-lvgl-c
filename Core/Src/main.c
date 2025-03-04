@@ -29,6 +29,11 @@
 #include "hal_is25lp032d/is25lp032d_lae.h"
 #include "hal_is25lp032d/is25lp032d.h"
 
+//#define DELAY_TICKER
+#ifdef DELAY_TICKER
+#include <stdio.h>
+#endif
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -133,6 +138,10 @@ int main(void)
   // create_test_scene();
   create_image_scroller();
   // create_image_library();
+#ifdef DELAY_TICKER
+  uint32_t ticker = HAL_GetTick();
+  uint32_t delay = 0;
+#endif
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -142,11 +151,24 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  	lv_timer_handler();
     uint32_t timestamp = HAL_GetTick();
   	lv_timer_handler();
+#ifndef DELAY_TICKER
     if ((HAL_GetTick() - timestamp) <= 15)
-  	  HAL_Delay(1);
+      HAL_Delay(1);
+#else
+    if ((HAL_GetTick() - timestamp) >= 3)
+    {
+      // the last call was the actual rendering
+      if ((HAL_GetTick() - ticker) >= 10000)
+      {
+        ticker = HAL_GetTick();
+        delay++;
+        printf("delay: %ld\n", delay);
+      }
+      HAL_Delay(delay);
+    }
+#endif
 
     update_image_position();
   }
