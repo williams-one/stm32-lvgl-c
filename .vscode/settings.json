@@ -1,0 +1,5 @@
+{
+    "files.associations": {
+        "stm32u5xx.h": "c"
+    }
+}
