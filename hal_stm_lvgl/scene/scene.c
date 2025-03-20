@@ -64,7 +64,7 @@ LV_IMAGE_DECLARE(internal_2_800x480_dither);
 LV_IMAGE_DECLARE(external_1_800x480_dither);
 LV_IMAGE_DECLARE(external_2_800x480_dither);
 
-#define SINGLE_IMAGE_BENCHMARK
+// #define SINGLE_IMAGE_BENCHMARK
 
 #ifdef SINGLE_IMAGE_BENCHMARK
 #define SINGLE_IMAGE_NAME image_1_800x480_tsc6
@@ -79,8 +79,8 @@ const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
 const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
   &image_1_800x480_tsc6,
   &image_5_800x480_i8,
-  &image_4_800x480_argb8888,
-  &image_2_800x480_tsc6a,
+  &image_1_800x480_tsc6, //image_4_800x480_argb8888,
+  &image_5_800x480_i8, //image_2_800x480_tsc6a,
 };
 #endif
 #elif defined(RESOLUTION_480x272)

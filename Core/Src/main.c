@@ -132,6 +132,7 @@ int main(void)
   MX_GPU2D_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   tft_init();
   touchpad_init();
   // lv_demo_benchmark();
@@ -151,11 +152,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    uint32_t timestamp = HAL_GetTick();
+//    uint32_t timestamp = HAL_GetTick();
   	lv_timer_handler();
 #ifndef DELAY_TICKER
-    if ((HAL_GetTick() - timestamp) <= 15)
-      HAL_Delay(1);
+//    if ((HAL_GetTick() - timestamp) <= 15)
+//      HAL_Delay(1);
 #else
     if ((HAL_GetTick() - timestamp) >= 3)
     {
@@ -170,7 +171,7 @@ int main(void)
     }
 #endif
 
-    // update_image_position();
+    update_image_position();
   }
   /* USER CODE END 3 */
 }
@@ -658,7 +659,7 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 25000;
+  sConfigOC.Pulse = 35000;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
