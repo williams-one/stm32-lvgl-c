@@ -132,6 +132,7 @@ int main(void)
   MX_GPU2D_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   tft_init();
   touchpad_init();
   // lv_demo_benchmark();
@@ -658,7 +659,7 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 25000;
+  sConfigOC.Pulse = 35000;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
