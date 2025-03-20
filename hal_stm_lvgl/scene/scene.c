@@ -64,10 +64,10 @@ LV_IMAGE_DECLARE(internal_2_800x480_dither);
 LV_IMAGE_DECLARE(external_1_800x480_dither);
 LV_IMAGE_DECLARE(external_2_800x480_dither);
 
-// #define SINGLE_IMAGE_BENCHMARK
+#define SINGLE_IMAGE_BENCHMARK
 
 #ifdef SINGLE_IMAGE_BENCHMARK
-#define SINGLE_IMAGE_NAME image_4_800x480_argb8888
+#define SINGLE_IMAGE_NAME image_1_800x480_tsc6
 
 const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
   &SINGLE_IMAGE_NAME,
@@ -94,10 +94,10 @@ LV_IMAGE_DECLARE(internal_2_480x272_dither);
 LV_IMAGE_DECLARE(external_1_480x272_dither);
 LV_IMAGE_DECLARE(external_2_480x272_dither);
 
-// #define SINGLE_IMAGE_BENCHMARK
+#define SINGLE_IMAGE_BENCHMARK
 
 #ifdef SINGLE_IMAGE_BENCHMARK
-#define SINGLE_IMAGE_NAME image_4_480x272_argb8888
+#define SINGLE_IMAGE_NAME image_1_480x272_tsc6
 
 const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
   &SINGLE_IMAGE_NAME,
@@ -155,7 +155,7 @@ static void create_images_in_memory(int image_count, bool scrollable)
     img[i] = lv_image_create(lv_screen_active());
     lv_image_dsc_t* in_memory_image_dsc = load_image_in_memory(img_dsc_address, img_data_address, image_dsc[i], image_dsc[i]->data, image_dsc[i]->data_size);
     lv_image_set_src(img[i], in_memory_image_dsc);
-    lv_obj_align(img[i], LV_ALIGN_TOP_LEFT, scrollable ? 800 * i : 0, 0 );
+    lv_obj_align(img[i], LV_ALIGN_TOP_LEFT, scrollable ? TFT_HOR_RES * i : 0, 0 );
   }
 }
 
@@ -190,7 +190,7 @@ void create_rect_blended(void)
   {
     rect[i] = lv_obj_create(lv_scr_act());
     lv_obj_set_pos(rect[i], 0, 0);
-    lv_obj_set_size(rect[i], 800, 480);
+    lv_obj_set_size(rect[i], TFT_HOR_RES, TFT_VER_RES);
     lv_obj_set_style_bg_color(rect[i], lv_color_hex(RECT_COLOR[i]), LV_PART_MAIN);
   }
 }
