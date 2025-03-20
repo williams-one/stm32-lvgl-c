@@ -14,8 +14,8 @@
 /*********************
  *      DEFINES
  *********************/
-// #define RESOLUTION_800x480
-#define RESOLUTION_480x272
+#define RESOLUTION_800x480
+// #define RESOLUTION_480x272
 
 #if defined(RESOLUTION_800x480)
   #define TFT_HOR_RES 800
