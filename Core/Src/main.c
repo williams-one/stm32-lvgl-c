@@ -271,7 +271,7 @@ static void MX_DCACHE2_Init(void)
 
   /* USER CODE END DCACHE2_Init 1 */
   hdcache2.Instance = DCACHE2;
-  hdcache2.Init.ReadBurstType = DCACHE_READ_BURST_INCR;
+  hdcache2.Init.ReadBurstType = DCACHE_READ_BURST_WRAP;
   if (HAL_DCACHE_Init(&hdcache2) != HAL_OK)
   {
     Error_Handler();

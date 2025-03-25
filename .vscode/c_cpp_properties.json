@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "CubeMX_STM32U599",
+            "name": "CubeMX_STM32U5G7",
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/Core/Inc",
@@ -15,7 +15,7 @@
             ],
             "defines": [
                 "USE_HAL_DRIVER",
-                "STM32U599xx"
+                "STM32U5G7xx"
             ],
             "compilerPath": "C:/tools/arm/arm-gnu-toolchain-13.3.rel1-mingw-w64-i686-arm-none-eabi/bin/arm-none-eabi-gcc.exe",
             "cStandard": "gnu11",
