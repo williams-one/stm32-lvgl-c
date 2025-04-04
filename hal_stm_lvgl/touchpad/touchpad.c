@@ -85,6 +85,7 @@ static void touchpad_read(lv_indev_t* indev, lv_indev_data_t* data)
         last_x = data->point.x;
         last_y = data->point.y;
         data->state = LV_INDEV_STATE_PRESSED;
+        printf("Touch detected at (%d, %d)\n", x, y);
       }
     }
     else
