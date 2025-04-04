@@ -355,7 +355,7 @@ void HAL_LTDC_MspInit(LTDC_HandleTypeDef* hltdc)
     PeriphClkInit.PLL3.PLL3Q = 2;
     PeriphClkInit.PLL3.PLL3R = 16;
     PeriphClkInit.PLL3.PLL3RGE = RCC_PLLVCIRANGE_1;
-    PeriphClkInit.PLL3.PLL3FRACN = 4096;
+    PeriphClkInit.PLL3.PLL3FRACN = 0.0;
     PeriphClkInit.PLL3.PLL3ClockOut = RCC_PLL3_DIVR;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
     {
@@ -532,13 +532,13 @@ void HAL_OSPI_MspInit(OSPI_HandleTypeDef* hospi)
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_OSPI;
     PeriphClkInit.OspiClockSelection = RCC_OSPICLKSOURCE_PLL2;
     PeriphClkInit.PLL2.PLL2Source = RCC_PLLSOURCE_HSE;
-    PeriphClkInit.PLL2.PLL2M = 1;
-    PeriphClkInit.PLL2.PLL2N = 8;
+    PeriphClkInit.PLL2.PLL2M = 4;
+    PeriphClkInit.PLL2.PLL2N = 66;
     PeriphClkInit.PLL2.PLL2P = 2;
-    PeriphClkInit.PLL2.PLL2Q = 2;
-    PeriphClkInit.PLL2.PLL2R = 1;
-    PeriphClkInit.PLL2.PLL2RGE = RCC_PLLVCIRANGE_1;
-    PeriphClkInit.PLL2.PLL2FRACN = 2048;
+    PeriphClkInit.PLL2.PLL2Q = 4;
+    PeriphClkInit.PLL2.PLL2R = 2;
+    PeriphClkInit.PLL2.PLL2RGE = RCC_PLLVCIRANGE_0;
+    PeriphClkInit.PLL2.PLL2FRACN = 0.0;
     PeriphClkInit.PLL2.PLL2ClockOut = RCC_PLL2_DIVQ;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
     {

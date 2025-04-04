@@ -171,7 +171,7 @@ int main(void)
     }
 #endif
 
-    update_image_position();
+    // update_image_position();
   }
   /* USER CODE END 3 */
 }

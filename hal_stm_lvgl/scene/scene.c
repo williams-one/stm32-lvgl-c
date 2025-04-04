@@ -109,8 +109,8 @@ const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
 const lv_image_dsc_t* image_dsc[MAX_IMAGES] = {
   &image_1_480x272_tsc6,
   &image_5_480x272_i8,
-  &image_4_480x272_argb8888,
-  &image_2_480x272_tsc6a,
+  &image_1_480x272_tsc6,
+  &image_5_480x272_i8,
 };
 #endif
 #endif
